@@ -26,10 +26,10 @@ module.exports = {
                 email: req.body.email
             }
         })
-            .then(user =>   {
+        .then(user =>   {
             if(!user)   {
-            return res.status(401).send({message: 'No records match' })
-        }
+                return res.status(401).send({message: 'No records match' })
+            }
         let input = bcrypt.hashSync(req.body.password, user.salt);
         if (input === user.password)    {
             let token = jwt.encode({ id: user.id, username: user.username}, appSecrets.jwtSecret);
