@@ -9,12 +9,16 @@ module.exports = {
         let hashedPass = bcrypt.hashSync(req.body.password, salt);
         User.create({
             username: req.body.username,
+            name: req.body.name,
             email: req.body.email,
             password: hashedPass,
             salt: salt,
+            profilePic: req.body.profilePic,
+            backgroundPic: req.body.backgroundPic,
+            profileTitle: req.body.profileTitle
         })
             .then(user => res.status(201).send(user))
-    .catch(error => res.status(400).send(error));
+            .catch(error => res.status(400).send(error));
     },
     login (req, res)    {
         User.findOne({
