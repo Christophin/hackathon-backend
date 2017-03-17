@@ -13,6 +13,6 @@ module.exports = (app) => {
     app.post('/users', UserController.register);
     app.post('/login', UserController.login);
 
-    app.post('/photos', middleware.authenticate, PhotoController.addPhoto)
+    app.post('/photos', middleware.authenticate, PhotoController.addPhoto);
     app.get('/photos', PhotoController.getPhotos)
 };
