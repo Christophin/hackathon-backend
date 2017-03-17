@@ -8,9 +8,11 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
+          Photo.hasMany(models.Comment);
         // associations can be defined here
       }
     }
   });
+
   return Photo;
 };
