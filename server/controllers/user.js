@@ -2,6 +2,8 @@ const User = require('../models').User;
 const bcrypt = require('bcryptjs');
 const jwt = require('jwt-simple');
 const appSecrets = require ('../config/secrets');
+const Photo = require('../models').Photo;
+const Comment = require('../models').Comment;
 
 module.exports = {
     getUsers (req, res) {
@@ -47,5 +49,14 @@ module.exports = {
         }
     })
     .catch(error => res.status(400).send(error));
+    },
+    getUser(req, res)   {
+        User.findById(req.params.id, {
+            include:    {
+                model: Photo, include: Comment
+            }
+        })
+            .then(user => res.status(201).send(user))
+            .catch(error => res.status(401).send(error))
     }
 };
