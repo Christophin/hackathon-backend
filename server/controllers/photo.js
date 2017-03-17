@@ -1,5 +1,5 @@
 const Photo = require('../models').Photo;
-
+const Comment = require('../models').Comment;
 module.exports = {
     addPhoto (req, res) {
         Photo.create({
@@ -17,12 +17,12 @@ module.exports = {
             .catch(error => res.status(401).send(error));
     },
     onePhoto    (req, res)  {
-        Photo.findById({
-            where:  {
-                id: req.params.id
+        Photo.findById(req.params.id, {
+            include: {
+                model: Comment
             }
         })
-            .then(photo => res.status(201).send(photo).send(photo))
+            .then(photo => res.status(201).send(photo))
             .catch(error => res.status(401).send(error));
     }
 };
