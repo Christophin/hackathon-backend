@@ -1,3 +1,5 @@
+const Comment = require("../models").Comment;
+
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Photo = sequelize.define('Photo', {
@@ -8,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-          Photo.hasMany(models.Comment);
+        Photo.hasMany(models.Comment);
         // associations can be defined here
       }
     }
