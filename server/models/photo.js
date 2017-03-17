@@ -10,7 +10,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Photo.hasMany(models.Comment);
+        Photo.hasMany(models.Comment,  {
+            foreignKey: 'photoId'
+        });
         // associations can be defined here
       }
     }
