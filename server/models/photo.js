@@ -4,6 +4,7 @@ const Comment = require("../models").Comment;
 module.exports = function(sequelize, DataTypes) {
   var Photo = sequelize.define('Photo', {
     userId: DataTypes.STRING,
+    username: DataTypes.STRING,
     photoUrl: DataTypes.STRING,
     description: DataTypes.TEXT,
     location: DataTypes.STRING
