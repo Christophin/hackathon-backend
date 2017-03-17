@@ -13,7 +13,16 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
     getPhotos (req, res)    {
-        Photo.findAll().then(users => res.status(201).send(users))
+        Photo.findAll().then(photos => res.status(201).send(photos))
+            .catch(error => res.status(401).send(error));
+    },
+    onePhoto    (req, res)  {
+        Photo.findById({
+            where:  {
+                id: req.params.id
+            }
+        })
+            .then(photo => res.status(201).send(photo).send(photo))
             .catch(error => res.status(401).send(error));
     }
 };
