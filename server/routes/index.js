@@ -20,4 +20,5 @@ module.exports = (app) => {
     app.get('/photo/:id', PhotoController.onePhoto);
 
     app.post('/photo/:id/comment', middleware.authenticate, CommentController.addComment);
+    app.get('photo/:id/comment', CommentController.getComments)
 };
