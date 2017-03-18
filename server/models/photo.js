@@ -3,7 +3,7 @@ const Comment = require("../models").Comment;
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Photo = sequelize.define('Photo', {
-    userId: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
     username: DataTypes.STRING,
     photoUrl: DataTypes.STRING,
     description: DataTypes.TEXT,
