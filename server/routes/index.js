@@ -2,7 +2,7 @@ const UserController = require('../controllers/user');
 const middleware = require('../middleware');
 const PhotoController = require('../controllers/photo');
 const CommentController = require('../controllers/comment');
-
+const LikeController = require('../controllers/like');
 
 module.exports = (app) => {
     app.use(function(req, res, next) {
@@ -20,5 +20,7 @@ module.exports = (app) => {
     app.get('/photo/:id', PhotoController.onePhoto);
 
     app.post('/photo/:id/comment', middleware.authenticate, CommentController.addComment);
-    app.get('/photo/:id/comment', CommentController.getComments)
+    app.get('/photo/:id/comment', CommentController.getComments);
+
+    app.post('/photo/:id/like', middleware.authenticate, LikeController.addLike);
 };

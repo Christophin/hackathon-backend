@@ -1,6 +1,7 @@
 const Photo = require('../models').Photo;
 const Comment = require('../models').Comment;
 const User = require('../models').User;
+const Like = require('../models').Like;
 module.exports = {
     addPhoto (req, res) {
         Photo.create({
@@ -8,7 +9,10 @@ module.exports = {
             username: req.user.username,
             photoUrl: req.body.photoUrl,
             description: req.body.description,
-            location: req.body.location
+            location: req.body.location,
+            likes: 0
+
+
 
         })
             .then(photo => res.status(201).send(photo))
@@ -17,7 +21,7 @@ module.exports = {
     getPhotos (req, res)    {
         Photo.findAll({
             include: [
-                { model: User, attributes: ['username', 'profilePic'] },
+                { model: User },
                 { model: Comment }
             ],
             order: [['createdAt',  'DESC']]
