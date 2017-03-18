@@ -1,6 +1,5 @@
 const Comment = require('../models').Comment;
 const User = require('../models').User;
-const Photo = require('../models').Photo;
 module.exports = {
     addComment  (req, res)  {
         Comment.create({
@@ -20,5 +19,7 @@ module.exports = {
             include:
                 {model: User, attributes: ['username', 'profilePic']}
         })
+            .then(comment => res.status(201).send(comment))
+            .catch(error => res.status(401).send(error));
     }
 };
