@@ -15,6 +15,9 @@ module.exports = {
     },
     getPhotos (req, res)    {
         Photo.findAll({
+            include:    {
+                model: Comment
+            },
             order: [['createdAt',  'DESC']]
         }).then(photos => res.status(201).send(photos))
             .catch(error => res.status(401).send(error));
