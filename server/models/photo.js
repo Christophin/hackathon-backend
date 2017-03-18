@@ -14,6 +14,9 @@ module.exports = function(sequelize, DataTypes) {
         Photo.hasMany(models.Comment,  {
             foreignKey: 'photoId'
         });
+        Photo.belongsTo(models.User, {
+            foreignKey: 'userId'
+        })
         // associations can be defined here
       }
     }

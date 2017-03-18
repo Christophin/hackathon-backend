@@ -17,7 +17,7 @@ module.exports = {
     getPhotos (req, res)    {
         Photo.findAll({
             include: [
-                { model: User, attributes: ['username', 'profileUrl'] },
+                { model: User, attributes: ['username', 'profilePic'] },
                 { model: Comment }
             ],
             order: [['createdAt',  'DESC']]
