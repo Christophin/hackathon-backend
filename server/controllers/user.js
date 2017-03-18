@@ -7,7 +7,11 @@ const Comment = require('../models').Comment;
 
 module.exports = {
     getUsers (req, res) {
-        User.findAll().then(users => res.status(201).send(users))
+        User.findAll( {
+            include:    {
+                model: Photo, include: Comment
+            }
+        }).then(users => res.status(201).send(users))
             .catch(error => res.status(401).send(error));
     },
     register (req, res) {
