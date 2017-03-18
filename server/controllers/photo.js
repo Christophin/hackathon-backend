@@ -17,8 +17,8 @@ module.exports = {
     getPhotos (req, res)    {
         Photo.findAll({
             include: [
-                { model: Users, attributes: ['username', 'profileUrl'] },
-                { model: Comments }
+                { model: User, attributes: ['username', 'profileUrl'] },
+                { model: Comment }
             ],
             order: [['createdAt',  'DESC']]
         }).then(photos => res.status(201).send(photos))
