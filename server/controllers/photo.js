@@ -14,7 +14,9 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
     getPhotos (req, res)    {
-        Photo.findAll().then(photos => res.status(201).send(photos))
+        Photo.findAll({
+            order: [['createdAt',  'DESC']]
+        }).then(photos => res.status(201).send(photos))
             .catch(error => res.status(401).send(error));
     },
     onePhoto    (req, res)  {
