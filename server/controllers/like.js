@@ -5,12 +5,19 @@ const Like = require('../models').Like;
 
 module.exports =  {
     addLike (req, res)  {
-        Like.create({
-            photoId: req.params.id,
-            userId: req.user.id
-        })
-            .then(like => res.status(201).send(like))
-            .catch(error => res.status(400).send(error));
+        let url =  `https://sleepy-shore-85821.herokuapp.com/likes?userid=${req.user.id}&photoId=${req.params.id}`;
+        $http.get(url).then(result   => {
+            if(result) {
+               res.status(401).send("You've already liked this")
+            } else{
+                Like.create({
+                    photoId: req.params.id,
+                    userId: req.user.id
+                })
+                    .then(like => res.status(201).send(like))
+                    .catch(error => res.status(400).send(error));
+            }
+        });
     },
     getLike (req, res)  {
         Like.findOne({
@@ -23,6 +30,7 @@ module.exports =  {
                 let hasLikes = Object.keys(result).length>0;
                 res.status(200).send(hasLikes);
             })
+
             .catch(error => res.status(400).send(error));
     }
 };
