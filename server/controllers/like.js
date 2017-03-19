@@ -19,10 +19,8 @@ module.exports =  {
                 userId: req.query.userId
             }
         })
-            .then(resp => {
-                let likesCount = Object.keys(resp).length;
-                res.send(likesCount);
-                //res.status(200).send(resp)
+            .then(result => {
+                res.status(200).send(Object.keys(result.data))
             })
             .catch(error => res.status(400).send(error));
     }
