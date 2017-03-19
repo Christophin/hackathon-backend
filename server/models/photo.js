@@ -18,6 +18,9 @@ module.exports = function(sequelize, DataTypes) {
         Photo.belongsTo(models.User, {
             foreignKey: 'userId'
         });
+        Photo.hasMany(models.Like, {
+            foreignKey: 'photoId'
+        });
         // associations can be defined here
       }
     }

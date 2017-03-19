@@ -16,7 +16,7 @@ module.exports = (app) => {
     app.post('/login', UserController.login);
 
     app.post('/photos', middleware.authenticate, PhotoController.addPhoto);
-    app.get('/photos/', PhotoController.getPhotos);
+    app.get('/photos', PhotoController.getPhotos);
     app.get('/photo/:id', PhotoController.onePhoto);
 
     app.post('/photo/:id/comment', middleware.authenticate, CommentController.addComment);

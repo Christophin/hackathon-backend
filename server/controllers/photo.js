@@ -22,7 +22,8 @@ module.exports = {
         Photo.findAll({
             include: [
                 { model: User },
-                { model: Comment }
+                { model: Comment },
+                { model: Like }
             ],
             order: [['createdAt',  'DESC']]
         }).then(photos => res.status(201).send(photos))
@@ -30,10 +31,11 @@ module.exports = {
     },
     onePhoto    (req, res)  {
         Photo.findById(req.params.id, {
-            include: {
-                model: Comment
-            }
-        })
+            include: [
+                { model: Comment },
+                { model: User },
+                { model: Like }
+        ]})
             .then(photo => res.status(201).send(photo))
             .catch(error => res.status(401).send(error));
     }
