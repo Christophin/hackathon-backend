@@ -11,9 +11,6 @@ module.exports = {
             description: req.body.description,
             location: req.body.location,
             likes: 0
-
-
-
         })
             .then(photo => res.status(201).send(photo))
             .catch(error => res.status(400).send(error));
