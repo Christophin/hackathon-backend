@@ -12,6 +12,7 @@ module.exports =  {
                 res.status(400).send(error);
             }
             let result = JSON.parse(body);
+            res.send(result);
             if(result) {
                 res.status(401).send("You've already liked this")
             } else{
