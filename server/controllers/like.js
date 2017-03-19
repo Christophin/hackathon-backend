@@ -7,9 +7,13 @@ const request = require('request');
 module.exports =  {
     addLike (req, res)  {
         let url =  `https://sleepy-shore-85821.herokuapp.com/likes?userid=${req.user.id}&photoId=${req.params.id}`;
-        request.get(url).then(result   => {
+        request(url, (error, resp, body)   => {
+            if (error)  {
+                res.status(400).send(error);
+            }
+            let result = JSON.parse(body);
             if(result) {
-               res.status(401).send("You've already liked this")
+                res.status(401).send("You've already liked this")
             } else{
                 Like.create({
                     photoId: req.params.id,
