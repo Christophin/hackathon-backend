@@ -2,11 +2,12 @@ const Photo = require('../models').Photo;
 const Comment = require('../models').Comment;
 const User = require('../models').User;
 const Like = require('../models').Like;
+const request = require('request');
 
 module.exports =  {
     addLike (req, res)  {
         let url =  `https://sleepy-shore-85821.herokuapp.com/likes?userid=${req.user.id}&photoId=${req.params.id}`;
-        $http.get(url).then(result   => {
+        request.get(url).then(result   => {
             if(result) {
                res.status(401).send("You've already liked this")
             } else{
