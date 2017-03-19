@@ -13,6 +13,7 @@ module.exports =  {
                 }
             })
             .then(result => {
+                console.log(result);
                 let hasLikes = Object.keys(result).length>0;
                 if(!hasLikes) {
                     Like.create({
