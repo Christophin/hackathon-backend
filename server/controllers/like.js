@@ -20,7 +20,7 @@ module.exports =  {
             }
         })
             .then(result => {
-                res.status(200).send(Object.keys(result.data))
+                res.status(200).send(result.data)
             })
             .catch(error => res.status(400).send(error));
     }
