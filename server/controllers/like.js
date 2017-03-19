@@ -20,7 +20,8 @@ module.exports =  {
             }
         })
             .then(result => {
-                res.status(200).send(result)
+                let hasLikes = Object.keys(result).length>0;
+                res.status(200).send(hasLikes);
             })
             .catch(error => res.status(400).send(error));
     }
