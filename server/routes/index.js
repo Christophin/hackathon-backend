@@ -23,5 +23,4 @@ module.exports = (app) => {
     app.get('/photo/:id/comment', CommentController.getComments);
 
     app.post('/photo/:id/like', middleware.authenticate, LikeController.addLike);
-
 };
